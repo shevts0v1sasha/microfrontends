@@ -9,14 +9,16 @@ const printCompilationMessage = require('./compilation.config.js');
 
 module.exports = (_, argv) => ({
   output: {
-    publicPath: "http://localhost:8080/",
+    publicPath: "/",
   },
+
 
   resolve: {
     extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
   },
 
   devServer: {
+    static: path.join(__dirname, 'public'),
     port: 8080,
     historyApiFallback: true,
     watchFiles: [path.resolve(__dirname, 'src')],

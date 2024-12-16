@@ -4,18 +4,18 @@ class Api {
       this._token = token;
       this._groupId = groupId;
       this._address = address;
-  
+
       // Запросы в примере работы выполняются к старому Api, в новом URL изменены.
     }
-  
+
     getToken() {
-      return sessionStorage.getItem('jwt');
+      return localStorage.getItem('jwt');
     }
-  
+
     getAppInfo() {
       return Promise.all([this.getCardList(), this.getUserInfo()]);
     }
-  
+
     getCardList() {
       return fetch(`${this._address}/cards`, {
         headers: {
@@ -24,7 +24,7 @@ class Api {
       })
         .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
     }
-  
+
     addCard({ name, link }) {
       return fetch(`${this._address}/cards`, {
         method: 'POST',
@@ -39,7 +39,7 @@ class Api {
       })
         .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
     }
-  
+
     removeCard(cardID) {
       return fetch(`${this._address}/cards/${cardID}`, {
         method: 'DELETE',
@@ -49,7 +49,7 @@ class Api {
       })
         .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
     }
-  
+
     getUserInfo() {
       return fetch(`${this._address}/users/me`, {
         headers: {
@@ -58,7 +58,7 @@ class Api {
       })
         .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
     }
-  
+
     setUserInfo({ name, about }) {
       return fetch(`${this._address}/users/me`, {
         method: 'PATCH',
@@ -73,7 +73,7 @@ class Api {
       })
         .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
     }
-  
+
     setUserAvatar({ avatar }) {
       return fetch(`${this._address}/users/me/avatar`, {
         method: 'PATCH',
@@ -87,7 +87,7 @@ class Api {
       })
         .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
     }
-  
+
     changeLikeCardStatus(cardID, like) {
       // Обычная реализация: 2 разных метода для удаления и постановки лайка.
       return fetch(`${this._address}/cards/like/${cardID}`, {
@@ -100,12 +100,11 @@ class Api {
         .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
     }
   }
-  
+
   const api = new Api({
     address: 'http://localhost:3001',
     groupId: ``,
     token: `80a75492-21c5-4330-a02f-308029e94b63`,
   });
-  
+
   export default api;
-  

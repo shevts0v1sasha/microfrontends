@@ -1,4 +1,8 @@
 auth/node_modules
+auth/.idea
 cards/node_modules
+cards/.idea
 host/node_modules
+host/.idea
 backend/node_modules
+backend/.idea

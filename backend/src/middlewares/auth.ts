@@ -1,8 +1,8 @@
 import jwt from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
+import { log } from 'node:console';
 import { JWT_SECRET } from '../config';
 import UnauthorizedError from '../errors/unauthorized-error';
-import { log } from 'node:console';
 
 interface JwtPayload {
   _id: string

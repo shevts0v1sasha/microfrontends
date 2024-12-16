@@ -1,6 +1,7 @@
 import React from 'react';
 
 import '../blocks/login/login.css';
+import '../blocks/auth-form/auth-form.css';
 import * as auth from "../utils/auth.js";
 
 function Login () {
@@ -21,7 +22,7 @@ function Login () {
       .login(email, password)
       .then((res) => {
         setEmail(email);
-        
+
         // history.push("/");
         dispatchEvent(new CustomEvent('login', {
           detail: {
@@ -31,8 +32,8 @@ function Login () {
         }));
       })
       .catch((err) => {
-        setTooltipStatus("fail");
-        setIsInfoToolTipOpen(true);
+        // setTooltipStatus("fail");
+        // setIsInfoToolTipOpen(true);
       });
   }
 

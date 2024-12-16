@@ -22,6 +22,19 @@ function AddPlacePopup({ isOpen, onAddPlace, onClose }) {
     });
   }
 
+  // function handleAddPlaceSubmit(newCard) {
+  //   api
+  //       .addCard(newCard)
+  //       .then((newCardFull) => {
+  //         dispatchEvent(new CustomEvent('new-card-added'), {
+  //           detach: newCardFull
+  //         })
+  //         // setCards([newCardFull, ...cards]);
+  //         // closeAllPopups();
+  //       })
+  //       .catch((err) => console.log(err));
+  // }
+
   return (
     <PopupWithForm
       isOpen={isOpen} onSubmit={handleSubmit} onClose={onClose} title="Новое место" name="new-card"

@@ -13,7 +13,7 @@ export const register = (email, password) => {
       },
       body: JSON.stringify({email, password})
     })
-    .then(getResponse)
+    .then(getResponse);
 };
 
 export const login = (email, password) => {
@@ -28,20 +28,7 @@ export const login = (email, password) => {
     .then(getResponse)
     .then((data) => {
       console.log(data);
-      
-      sessionStorage.setItem('jwt', data.token)
+      localStorage.setItem('jwt', data.token)
       return data;
     })
 };
-
-export const checkToken = (token) => {
-    return fetch(`${BASE_URL}/users/me`, {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': `${token}`,
-      }
-    })
-    .then(getResponse)
-}

@@ -4,7 +4,6 @@ import {
 } from '../controllers/users';
 import { validateObjId, validateAvatar, validateProfile } from '../middlewares/validatons';
 
-
 const router = Router();
 
 router.get('/', getUsers);

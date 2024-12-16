@@ -10,6 +10,5 @@ export default function ProfileSection({ currentUser }) {
       <button className="profile__edit-button" type="button"></button>
       <p className="profile__description">{currentUser.about}</p>
     </div>
-    <button className="profile__add-button" type="button"></button>
   </section>;
 }

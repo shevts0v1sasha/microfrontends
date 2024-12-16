@@ -1,8 +1,5 @@
 function HeaderLogout({ email }) {
 
-    console.log(email);
-    
-    
     function onSignOut() {
         // при вызове обработчика onSignOut происходит удаление jwt
         sessionStorage.removeItem("jwt");

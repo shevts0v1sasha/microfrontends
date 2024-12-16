@@ -1,5 +1,6 @@
 .auth-form__link {
   color: #fff;
+  cursor: pointer;
 }
 
 .auth-form__link:hover {

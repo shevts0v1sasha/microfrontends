@@ -67,6 +67,7 @@ module.exports = (_, argv) => ({
       remotes: {},
       exposes: {
         './Login': './src/components/Login.js',
+        './Registration': './src/components/Register.js',
         './HeaderLogout': './src/components/HeaderLogout.js',
         './ProfileSection': './src/components/ProfileSection.js'
       },

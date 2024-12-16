@@ -4,11 +4,12 @@ import { errors } from 'celebrate';
 import cookieParser from 'cookie-parser';
 import express from 'express';
 import mongoose from 'mongoose';
-const cors = require('cors');
 
 import { DB_ADDRESS } from './config';
 import errorHandler from './middlewares/error-handler';
 import routes from './routes';
+
+const cors = require('cors');
 
 const { PORT = 3001 } = process.env;
 const app = express();

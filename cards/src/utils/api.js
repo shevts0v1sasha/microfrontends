@@ -5,12 +5,12 @@ class Api {
         this._token = token;
         this._groupId = groupId;
         this._address = address;
-    
+
         // Запросы в примере работы выполняются к старому Api, в новом URL изменены.
       }
 
       getToken() {
-        return sessionStorage.getItem('jwt');
+        return localStorage.getItem('jwt');
       }
 
     getCardList() {
@@ -21,7 +21,7 @@ class Api {
         })
           .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
       }
-    
+
       addCard({ name, link }) {
         return fetch(`${this._address}/cards`, {
           method: 'POST',
@@ -36,7 +36,7 @@ class Api {
         })
           .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
       }
-    
+
       removeCard(cardID) {
         return fetch(`${this._address}/cards/${cardID}`, {
           method: 'DELETE',
@@ -54,5 +54,5 @@ const api = new Api({
     groupId: ``,
     token: `80a75492-21c5-4330-a02f-308029e94b63`,
   });
-  
+
 export default api;

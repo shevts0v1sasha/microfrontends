@@ -1,15 +1,17 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Card from "./Card";
 import api from "../utils/api";
+import '../blocks/places/places.css';
+import AddPlaceButton from "./AddPlaceButton";
+import AddPlacePopup from "./AddPlacePopup";
 
-export default function ContentSection({ currentUser }) {
+export default function ContentSection({ currentUser, closeAllPopups }) {
     const [cards, setCards] = useState([]);
+    const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
 
     useEffect(() => {
         api.getCardList()
         .then(response => {
-            console.log(response.data);
-            
             setCards(response.data);
         })
     }, []);
@@ -26,7 +28,20 @@ export default function ContentSection({ currentUser }) {
         console.log(card);
     }
 
+    function handleAddPlaceSubmit(newCard) {
+        api
+            .addCard(newCard)
+            .then((newCardFull) => {
+                setCards([newCardFull, ...cards]);
+                closeAllPopups();
+            })
+            .catch((err) => console.log(err));
+    }
+
     return <section className="places page__section">
+        <div style={{display: "flex", alignItems: "center", justifyContent: "right", marginBottom: "16px"}}>
+            <button onClick={() => setIsAddPlacePopupOpen(true)} className="profile__add-button" type="button"></button>
+        </div>
     <ul className="places__list">
       {cards.map((card) => (
         <Card
@@ -39,5 +54,10 @@ export default function ContentSection({ currentUser }) {
         />
       ))}
     </ul>
+        <AddPlacePopup
+            isOpen={isAddPlacePopupOpen}
+            onAddPlace={handleAddPlaceSubmit}
+            onClose={closeAllPopups}
+        />
   </section>;
 }

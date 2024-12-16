@@ -7,19 +7,23 @@ const ProfileSection = lazy(() => import('auth/ProfileSection').catch(() => {
 const ContentSection = lazy(() => import('cards/ContentSection').catch(() => {
   return { default: () => <div>Couldn't load content section</div>}
 }));
+const AddPlaceButton = lazy(() => import('cards/AddPlaceButton').catch(() => {
+    return { default: () => <div>Couldn't load AddPlaceButton</div>}
+}));
 
 function Main(props) {
   const currentUser = React.useContext(CurrentUserContext);
 
   console.log(currentUser);
-  
+
 
   const imageStyle = { backgroundImage: `url(${currentUser.avatar})` };
 
   return (
-    <main className="content">
-      <ProfileSection currentUser={currentUser}/>
-      <ContentSection currentUser={currentUser}/>
+    <main>
+            <ProfileSection currentUser={currentUser}/>
+            {/*<AddPlaceButton/>*/}
+      <ContentSection currentUser={currentUser} closeAllPopups={props.closeAllPopups}/>
     </main>
   );
 }

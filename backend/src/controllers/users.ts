@@ -5,12 +5,12 @@ import {
   Response,
 } from 'express';
 import jwt from 'jsonwebtoken';
+import { log } from 'node:console';
 import { JWT_SECRET } from '../config';
 import BadRequestError from '../errors/bad-request-error';
 import ConflictError from '../errors/conflict-error';
 import NotFoundError from '../errors/not-found-error';
 import User from '../models/user';
-import { log } from 'node:console';
 
 const login = (req: Request, res: Response, next: NextFunction) => {
   const { email, password } = req.body;
